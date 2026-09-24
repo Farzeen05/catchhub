@@ -1,0 +1,141 @@
+/* ---------- 1. Reset & base ---------- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+img { display: block; max-width: 100%; height: auto; }
+a { text-decoration: none; }
+
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+  color: #222;
+  background: linear-gradient(180deg, #dcdcdc 0%, #f4f4f4 45%, #fafafa 100%);
+  overflow-x: hidden;
+}
+
+/* ---------- 2. Store buttons (used twice) ---------- */
+.store-buttons { display: flex; gap: 1.3vw; }
+.store-btn {
+  /* 1em = 1/15 of the button width, so everything inside scales together */
+  font-size: clamp(11.3px, 1.04vw, 20px);
+  width: 15em; height: 5em;
+  display: flex; align-items: center; gap: 0.7em;
+  padding-left: 1.2em;
+  border-radius: 0.6em;
+  color: #fff;
+}
+.store-btn__icon { width: 2.7em; height: auto; flex: none; }
+.store-btn__text { display: flex; flex-direction: column; line-height: 1; white-space: nowrap; }
+.store-btn small { font-size: 0.85em; font-weight: 400; }
+.store-btn strong { font-weight: 400; }
+
+.store-btn--android {
+  background: #b3cb39;
+  box-shadow: 0 0.5em 0.7em -0.2em rgba(179, 203, 57, 0.55);
+}
+.store-btn--android strong { font-size: 2.1em; margin-top: 0.05em; }
+
+.store-btn--apple {
+  background: #000;
+  border: 1px solid #333;
+  box-shadow: 0 0.6em 0.6em -0.3em rgba(0, 0, 0, 0.5);
+}
+.store-btn--apple small { font-size: 0.95em; }
+.store-btn--apple strong { font-size: 1.7em; margin-top: 0.1em; }
+
+/* ---------- 3. Hero ---------- */
+.hero {
+  max-width: 1920px;
+  margin: 0 auto;
+  min-height: 52vw;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  padding: 0 2vw 0 7vw;
+  position: relative;
+  overflow: hidden;
+}
+/* white curved shape at the bottom (fades out so there is no hard line) */
+.hero::before {
+  content: "";
+  position: absolute;
+  left: -10%; right: -10%; bottom: -260px;
+  height: 620px;
+  background: linear-gradient(180deg, #fff 0%, #fff 25%, rgba(255,255,255,0) 58%);
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  z-index: 0;
+}
+.hero__text, .hero__image { position: relative; z-index: 1; }
+.hero__text { text-align: center; }
+.hero__logo { width: min(425px, 22vw); margin: 0 auto 3vw; }
+.hero__title {
+  font-size: clamp(16px, 1.75vw, 34px);
+  font-weight: 500;
+  white-space: nowrap;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  margin-bottom: 0.7vw;
+}
+.hero__subtitle {
+  font-size: clamp(16px, 1.85vw, 36px);
+  font-weight: 300; color: #666;
+  margin-bottom: 4.5vw;
+}
+.hero .store-buttons { justify-content: center; }
+.hero__image img { width: 100%; max-width: 876px; margin-left: auto; }
+
+/* ---------- 4. Feature rows ---------- */
+.feature {
+  max-width: 1920px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  padding: 0 6vw;
+}
+.feature + .feature { margin-top: -4.5vw; }
+.feature__image img { width: 100%; max-width: 766px; }
+.feature--channels .feature__image img { max-width: 830px; }
+.feature--future .feature__image img { max-width: 864px; }
+
+.feature__text { text-align: center; }
+.feature__title {
+  font-size: clamp(22px, 2.1vw, 40px);
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 2.3vw;
+}
+.feature__desc {
+  font-size: clamp(20px, 2.1vw, 40px);
+  font-weight: 300; line-height: 1.15; color: #666;
+}
+
+/* Messages: text left, image right */
+.feature--reverse .feature__image { order: 2; }
+.feature--reverse .feature__image img { margin-left: auto; }
+
+/* In Future: icon row above the heading */
+.feature--future { margin-top: -2vw; }
+.feature__icons { width: 100%; max-width: 780px; margin: 0 auto 3vw; }
+
+/* ---------- 5. Footer ---------- */
+.footer { text-align: center; padding: 7vw 20px 5vw; }
+.footer__lead { font-size: clamp(20px, 1.9vw, 36px); color: #333; margin-bottom: 2.3vw; }
+.footer .store-buttons { justify-content: center; margin-bottom: 2.8vw; }
+.footer__contact { font-size: clamp(18px, 1.7vw, 32px); color: #333; margin-bottom: 3.5vw; }
+.footer__contact a { color: #4da3ff; margin-left: 8px; }
+.footer__brand { width: 110px; margin: 0 auto; }
+
+/* ---------- 6. Phones and small screens ---------- */
+@media (max-width: 1000px) {
+  .hero, .feature { grid-template-columns: 1fr; padding: 40px 20px; min-height: 0; }
+  .hero__text { margin: 0 auto 40px; }
+  .hero__logo { width: 260px; margin-bottom: 30px; }
+  .hero__title { white-space: normal; font-size: 22px; }
+  .hero__subtitle { font-size: 22px; margin-bottom: 30px; }
+  .feature__desc { font-size: 22px; }
+  .hero__image img, .feature__image img { width: 100%; margin: 0 auto; }
+  .feature + .feature, .feature--future { margin-top: 0; }
+  .feature--reverse .feature__image { order: 0; }
+  .feature__title { font-size: 26px; letter-spacing: 5px; margin: 20px 0; }
+  .store-buttons { flex-wrap: wrap; justify-content: center; gap: 12px; }
+  .footer__lead, .footer__contact { font-size: 20px; }
+}
